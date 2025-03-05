@@ -1,3 +1,5 @@
+import copy
+
 class Grid:
     def __init__(self, rows, cols):
         self.rows = rows
@@ -14,3 +16,6 @@ class Grid:
     def __setitem__(self, index, value):
         row, col = index
         self.data[row][col] = value
+
+    def copy(self):
+        return copy.deepcopy(self)
