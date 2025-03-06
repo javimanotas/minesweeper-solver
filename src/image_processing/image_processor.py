@@ -43,7 +43,7 @@ def get_game_cell(image, min_row, min_col, max_row, max_col):
 def image_to_grid(image_path, rows, cols):
     image = Image.open(image_path, "r").convert('RGB')
     width, _ = image.size
-    cell_size = width // rows
+    cell_size = width // cols
 
     grid = Grid(rows, cols)
 
