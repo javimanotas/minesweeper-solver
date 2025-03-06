@@ -1,4 +1,4 @@
-import clingo
+import clingo # type: ignore
 from grid import Grid
 
 def has_numeric_neighbor(grid, r, c):
