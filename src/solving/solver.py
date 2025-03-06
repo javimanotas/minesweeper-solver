@@ -1,5 +1,4 @@
 import clingo # type: ignore
-from grid import Grid
 
 def has_numeric_neighbor(grid, r, c):
     for i in range(r - 1, r + 2):
