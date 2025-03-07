@@ -29,8 +29,8 @@ def get_game_cell(image, min_row, min_col, max_row, max_col):
 
     freqs = { k : 0 for k in colors.keys() }
 
-    for y in range(min_row, max_row):
-        for x in range(min_col, max_col):
+    for y in range(min_row, max_row, 4):
+        for x in range(min_col, max_col, 4):
             color = image.getpixel((x, y))
 
             for k, v in colors.items():
