@@ -4,10 +4,19 @@ def load_image(path, res = None):
     image = pygame.image.load(path)
     
     if res != None:
-        ratio = image.get_rect().width / image.get_rect().height
+        width, height = image.get_size()
+        ratio = width / height
         image = pygame.transform.scale(image, (ratio * res, res))
     
     return image
+
+def center_at(screen, row, col, cell_size, res):
+    width, height = res
+
+    center_x = cell_size * (col + 0.5)
+    center_y = cell_size * (row + 0.5)
+    pygame.draw.circle(screen, (0, 0, 255), (cell_size * col, cell_size * row), 5)
+    return center_x - width / 2, center_y - height / 2
 
 def display_solution(image_path, grid, solution):
     mines = solution['mine']
@@ -15,7 +24,7 @@ def display_solution(image_path, grid, solution):
 
     pygame.init()
     image = load_image(image_path)
-    width, height = image.get_rect().width, image.get_rect().height
+    width, height = image.get_size()
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption('Solution')
 
@@ -27,9 +36,9 @@ def display_solution(image_path, grid, solution):
     not_mine = load_image('./src/display/not_mine.png', cell_size * 0.66)
     
     for (r, c) in mines:
-        screen.blit(mine, ((c + 0.26) * cell_size, (r + 0.125) * cell_size))
+        screen.blit(mine, center_at(screen, r, c, cell_size, mine.get_size()))
     for (r, c) in safes:
-        screen.blit(not_mine, ((c + 0.27) * cell_size, (r + 0.2) * cell_size))
+        screen.blit(not_mine, center_at(screen, r, c, cell_size, not_mine.get_size()))
 
     pygame.display.update()
     pygame.display.flip()
