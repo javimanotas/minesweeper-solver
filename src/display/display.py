@@ -15,7 +15,7 @@ def center_at(screen, row, col, cell_size, res):
 
     center_x = cell_size * (col + 0.5)
     center_y = cell_size * (row + 0.5)
-    pygame.draw.circle(screen, (0, 0, 255), (cell_size * col, cell_size * row), 5)
+
     return center_x - width / 2, center_y - height / 2
 
 def display_solution(image_path, grid, solution):
