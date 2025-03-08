@@ -1,5 +1,7 @@
-# minesweeper-solver
-Solves a minesweeper game given a screenshot
+# Minesweeper solver
+Solves the current state of a gnome minesweeper game.
+
+![example](screenshots/example.png)  
 
 ## Install
 
