@@ -40,15 +40,15 @@ def get_game_cell(image, min_row, min_col, max_row, max_col):
 
     return max(freqs, key=freqs.get)
 
-def image_to_grid(image_path, rows, cols):
+def image_to_grid(image_path, contour, rows, cols):
     image = Image.open(image_path, "r").convert('RGB')
-    width, _ = image.size
+    width = contour[2] - contour[0]
     cell_size = width // cols
 
     grid = Grid(rows, cols)
 
     for r in range(rows):
         for c in range(cols):
-            grid[(r, c)] = get_game_cell(image, cell_size * r, cell_size * c, cell_size * (r + 1), cell_size * (c + 1))
+            grid[(r, c)] = get_game_cell(image, cell_size * r + contour[1], cell_size * c + contour[0], cell_size * (r + 1) + contour[1], cell_size * (c + 1) + contour[0])
 
     return grid
