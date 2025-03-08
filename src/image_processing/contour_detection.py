@@ -2,10 +2,10 @@ import cv2
 import numpy as np
 
 def same_cell(cellA, cellB):
-    return np.abs(cellA[2] - cellB[3]) < 4
+    return np.abs(cellA[2] - cellB[2]) < 4
 
 def filter_similars(cells):
-    cells.sort(key = lambda c : c[3])
+    cells.sort(key = lambda c : c[2])
 
     groups = {}
     i = 0
@@ -18,6 +18,10 @@ def filter_similars(cells):
         i += 1
 
     k = max(groups, key = groups.get)
+
+    for i in range(k, k+groups[k]):
+        print(f'detected cell: cells[i]')
+
     return cells[k:k+groups[k]]
 
 def find_contour(image_path, debug = False):
@@ -39,7 +43,6 @@ def find_contour(image_path, debug = False):
                     cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 
                 cells.append((x, y, w, h))
-                print(f'detected cell: x={x}, y={y}, w={w}, h={h}')
 
     if debug:
         cv2.imshow('Detected Minesweeper Board', image)
