@@ -24,6 +24,13 @@ def filter_similars(cells):
 
     return cells[k:k+groups[k]]
 
+def cnt_rowscols(cells, n):
+    cnt = 1
+    for i in range(1, len(cells)):
+        if np.abs(cells[i][n] - cells[0][n]) < 3:
+            cnt += 1
+    return cnt
+
 def find_contour(image_path, debug = False):
     image = cv2.imread(image_path)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -51,7 +58,11 @@ def find_contour(image_path, debug = False):
 
     valid_cells = filter_similars(cells)
 
+    rows = cnt_rowscols(valid_cells, 0)
+    cols = cnt_rowscols(valid_cells, 1)
+    print((rows, cols))
+
     key = lambda n : lambda x : x[n]
     a = max(valid_cells, key=key(0))
     b = max(valid_cells, key=key(1))
-    return min(valid_cells, key=key(0))[0], min(valid_cells, key=key(1))[1], a[0] + a[2], a[1] + a[3]
+    return (min(valid_cells, key=key(0))[0], min(valid_cells, key=key(1))[1], a[0] + a[2], a[1] + a[3]), rows, cols
