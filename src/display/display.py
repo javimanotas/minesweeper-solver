@@ -36,9 +36,9 @@ def display_solution(image_path, contour, grid, solution):
     not_mine = load_image('./src/display/not_mine.png', cell_size * 0.66)
     
     for (r, c) in mines:
-        screen.blit(mine, center_at(screen, r, c, cell_size, mine.get_size()))
+        screen.blit(mine, center_at(r, c, cell_size, mine.get_size()))
     for (r, c) in safes:
-        screen.blit(not_mine, center_at(screen, r, c, cell_size, not_mine.get_size()))
+        screen.blit(not_mine, center_at(r, c, cell_size, not_mine.get_size()))
 
     pygame.display.update()
     pygame.display.flip()
