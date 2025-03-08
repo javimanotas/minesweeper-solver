@@ -4,7 +4,7 @@ import numpy as np
 def same_cell(cellA, cellB):
     return np.abs(cellA[2] - cellB[2]) < 4
 
-def filter_similars(cells):
+def filter_similars(cells, debug):
     cells.sort(key = lambda c : c[2])
 
     groups = {}
@@ -19,8 +19,9 @@ def filter_similars(cells):
 
     k = max(groups, key = groups.get)
 
-    for i in range(k, k+groups[k]):
-        print(f'detected cell: cells[i]')
+    if debug:
+        for i in range(k, k+groups[k]):
+            print(f'detected cell: cells[i]')
 
     return cells[k:k+groups[k]]
 
@@ -52,15 +53,17 @@ def find_contour(image_path, debug = False):
                 cells.append((x, y, w, h))
 
     if debug:
-        cv2.imshow('Detected Minesweeper Board', image)
+        cv2.imshow('Press any key to exit', image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
-    valid_cells = filter_similars(cells)
+    valid_cells = filter_similars(cells, debug)
 
     rows = cnt_rowscols(valid_cells, 0)
     cols = cnt_rowscols(valid_cells, 1)
-    print((rows, cols))
+    
+    if debug:
+        print(f'rows and columns found: {(rows, cols)}')
 
     key = lambda n : lambda x : x[n]
     a = max(valid_cells, key=key(0))

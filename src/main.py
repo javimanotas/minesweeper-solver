@@ -24,14 +24,14 @@ def main():
 
     image_path = './temp_screenshot.png'
 
-    for i in range(2):
+    for i in range(3):
         print(f'taking a screenshot in {3 - i}...')
         time.sleep(1)
 
     screenshot = ImageGrab.grab()
     screenshot.save(image_path)
 
-    contour, rows, cols = find_contour(image_path)
+    contour, rows, cols = find_contour(image_path, debug)
     grid = image_to_grid(image_path, contour, rows, cols)
     solution = solver.solve(grid)
 
