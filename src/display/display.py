@@ -10,7 +10,7 @@ def load_image(path, res = None):
     
     return image
 
-def center_at(screen, row, col, cell_size, res):
+def center_at(row, col, cell_size, res):
     width, height = res
 
     center_x = cell_size * (col + 0.5)
