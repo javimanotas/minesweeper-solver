@@ -1,3 +1,4 @@
 pillow
 clingo
 pygame
+opencv-python
