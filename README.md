@@ -8,11 +8,28 @@ Solves the current state of a gnome minesweeper game.
 Run the following command:
 
 ```sh
-pip install -r requirements.txt
+make compile
 ```
 
 ## Run
 
-After executing the main module you have 3 seconds to put in focus the minesweeper game.
+Run the solver with:
 
-Run main with `-debug` if you want to see the intermediate steps.
+```sh
+make run
+```
+
+If you want to see the intermediate steps, run:
+
+```sh
+make run-debug
+```
+After running the program, you have **3 seconds** to put the Minesweeper game in focus.
+
+## Clean
+
+To remove the virtual environment, use:
+
+```sh
+make clean
+```
