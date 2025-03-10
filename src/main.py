@@ -31,6 +31,9 @@ def main():
     screenshot = ImageGrab.grab()
     screenshot.save(image_path)
 
+    if debug:
+        print('\n---------- Debug mode enabled ----------')
+
     contour, rows, cols = find_contour(image_path, debug)
     grid = image_to_grid(image_path, contour, rows, cols)
     solution = solver.solve(grid)
@@ -38,7 +41,7 @@ def main():
     if debug:
         print(f'\ndetected contour: {contour}')
         print(f'\ngrid:\n{grid}')
-        print(f'\n{solution}')
+        print(f'\nsolution: {solution}')
 
     display_solution(image_path, contour, grid, solution)
     os.remove(image_path)

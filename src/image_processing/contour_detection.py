@@ -20,8 +20,10 @@ def filter_similars(cells, debug):
     k = max(groups, key = groups.get)
 
     if debug:
+        print('detected cells:')
         for i in range(k, k+groups[k]):
-            print(f'detected cell: cells[i]')
+            print(cells[i])
+        print()
 
     return cells[k:k+groups[k]]
 
